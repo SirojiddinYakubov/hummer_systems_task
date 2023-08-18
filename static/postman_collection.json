@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "b60b952c-bdb3-46a6-a01d-1dc0b3c85a5b",
+		"name": "Hummer Systems Task API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16701660",
+		"_collection_link": "https://grey-station-258050.postman.co/workspace/My-API~43aad951-4bde-433a-a1b1-88d16a41a31b/collection/16701660-b60b952c-bdb3-46a6-a01d-1dc0b3c85a5b?action=share&source=collection_link&creator=16701660"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+998919791999\",\n    \"invite_code\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/auth/login/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+998919791999\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/auth/register/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MzExNDk3NiwiaWF0IjoxNjkyMjUwOTc2LCJqdGkiOiJmODE5NzZkNzQzMjE0MWUxOWM0MDIyZTA5OWVlNmNkOCIsInVzZXJfaWQiOjF9.fcZQegW7xrNwOJHunCoSymoLJD57jLXpgKcNbw_17Qw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/auth/verify-token/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify-token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify sms code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+998919791999\",\n    \"code\": \"3549\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/auth/verify-code/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"verify-code",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sms code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"+998919791999\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/auth/get-code/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"get-code",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "set password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMzY2MjU2LCJpYXQiOjE2OTIzNjI2NTYsImp0aSI6ImRjNmI2NDk1YmNlMTQzOTY4NWMwM2Y3M2ZmODc5M2Y1IiwidXNlcl9pZCI6MX0.a0CNKcsFxU-t_HUjRlDkp169gymiNvabqkm07V3XEnY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://onless.uz/api/v1/users/set-password/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"set-password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMzY2MzA1LCJpYXQiOjE2OTIzNjI3MDUsImp0aSI6ImNmMTU0MTU3Zjc1NTRlMzJiOGU0OWQ0MjA5MDYwYzFhIiwidXNlcl9pZCI6MX0.EObhGD7WYZzZ3neCy_XgXI9WycpRGIh9-Z868Y0I5qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://onless.uz/api/v1/users/list/?search=979",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"list",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "979"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyMzY2MzA1LCJpYXQiOjE2OTIzNjI3MDUsImp0aSI6ImNmMTU0MTU3Zjc1NTRlMzJiOGU0OWQ0MjA5MDYwYzFhIiwidXNlcl9pZCI6MX0.EObhGD7WYZzZ3neCy_XgXI9WycpRGIh9-Z868Y0I5qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://onless.uz/api/v1/users/me/",
+							"protocol": "https",
+							"host": [
+								"onless",
+								"uz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

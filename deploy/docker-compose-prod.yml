@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  hummer_systems_task_db:
+    container_name: hummer_systems_task_db
+    restart: always
+    image: postgres:15
+    env_file: ".env.prod"
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=md5
+    volumes:
+      - pgdata:/var/lib/postgresql/data:rw
+    expose:
+      - 5432
+
+  hummer_systems_task_web:
+    container_name: hummer_systems_task_web
+    restart: always
+    image: hummer_systems_task_web:latest
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    volumes:
+      - ..:/code
+    ports:
+      - "${SVC_PORT}:${SVC_PORT}"
+    depends_on:
+      - hummer_systems_task_db
+    env_file: ".env.prod"
+
+  hummer_systems_task_redis:
+    container_name: hummer_systems_task_redis
+    image: "redis:alpine"
+    restart: always
+    expose:
+      - ${REDIS_PORT}
+    env_file: ".env.prod"
+
+volumes:
+  pgdata:
+    name: hummer_systems_task_data
