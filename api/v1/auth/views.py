@@ -119,8 +119,11 @@ class GetCode(BaseAuthAPIView, generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         phone_number = serializer.validated_data.get('phone_number')
-        user = CustomUser.objects.filter(phone_number=phone_number).last()
-        if user and user.is_verified:
+        try:
+            user = CustomUser.objects.get(phone_number=phone_number)
+        except CustomUser.DoesNotExist:
+            return Response({"message": _("User not found with this phone!")})
+        if user.is_verified:
             return Response({"message": _("This phone number already verified!")}, status=status.HTTP_400_BAD_REQUEST)
 
         # send otp via message
