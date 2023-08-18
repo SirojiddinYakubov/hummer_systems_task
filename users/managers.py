@@ -16,7 +16,8 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("The Phone must be set"))
 
         extra_fields.setdefault("is_verified", False)
-        user = self.model(phone_number=phone_number, password=password, **extra_fields)
+        user = self.model(phone_number=phone_number, **extra_fields)
+        user.set_password(password)
         user.save()
         return user
 
