@@ -145,9 +145,12 @@ class VerifyCode(BaseAuthAPIView, generics.GenericAPIView):
         sms_code = str(code).zfill(4)
         totp = pyotp.TOTP(secret, digits=4, interval=OTP_EXPIRES_IN)
         if totp.verify(sms_code):
-            user = CustomUser.objects.filter(phone_number=phone_number).last()
-            user.is_verified = True
-            user.save()
-            return Response({"message": _("Your account has been verified!")})
+            try:
+                user = CustomUser.objects.get(phone_number=phone_number)
+                user.is_verified = True
+                user.save()
+                return Response({"message": _("Your account has been verified!")})
+            except CustomUser.DoesNotExist:
+                return Response({"message": _("User not found with this phone!")})
         else:
             return Response({"message": _("Sms code invalid!")}, status=status.HTTP_400_BAD_REQUEST)
