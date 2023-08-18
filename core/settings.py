@@ -228,6 +228,9 @@ CACHES = {
 
 OTP_EXPIRES_IN = 3600
 
+if not os.path.exists("logs"):
+    os.makedirs("logs")
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
